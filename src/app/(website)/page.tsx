@@ -71,7 +71,7 @@ export default function Home() {
               </div>
 
               <nav className="hidden space-x-6 text-sm text-blue-200 md:block">
-                <Link href="#features">Features</Link>
+                <Link href="/features">Features</Link>
                 <Link href="#pricing">Pricing</Link>
                 <Link href="#about">About</Link>
               </nav>

@@ -13,6 +13,15 @@ import KeywordsTracker from "@/components/global/keywords-tracker";
 import WebhookMonitor from "@/components/global/webhook-monitor";
 import SmartAIDemo from "@/components/global/smart-ai-demo";
 import PricingShowcase from "@/components/global/pricing-showcase";
+import AutomationBuilder from "@/components/global/automation-builder";
+import AnalyticsCharts from "@/components/global/analytics-charts";
+import InfluencerOutreach from "@/components/global/influencer-outreach";
+import ContentPlanner from "@/components/global/content-planner";
+import CompetitorAnalysis from "@/components/global/competitor-analysis";
+import HashtagResearch from "@/components/global/hashtag-research";
+import SystemHealth from "@/components/global/system-health";
+import AudienceInsights from "@/components/global/audience-insights";
+import NotificationCenter from "@/components/global/notification-center";
 
 export const dynamic = "force-dynamic";
 
@@ -30,17 +39,44 @@ const Page = async () => {
       {/* Metrics Overview */}
       <MetricsDashboard />
 
+      {/* Analytics Charts */}
+      <AnalyticsCharts />
+
+      {/* Audience Insights */}
+      <AudienceInsights />
+
+      {/* Notification Center */}
+      <NotificationCenter />
+
       {/* Main Grid */}
       <div className="grid lg:grid-cols-2 gap-6">
         <ConversationsList />
         <KeywordsTracker />
       </div>
 
+      {/* Automation Builder */}
+      <AutomationBuilder />
+
       {/* Automations Section */}
       <AutomationsList />
 
+      {/* Content Planning */}
+      <ContentPlanner />
+
+      {/* Hashtag Research */}
+      <HashtagResearch />
+
+      {/* Influencer Outreach */}
+      <InfluencerOutreach />
+
+      {/* Competitor Analysis */}
+      <CompetitorAnalysis />
+
       {/* AI Demo Section */}
       <SmartAIDemo />
+
+      {/* System Health */}
+      <SystemHealth />
 
       {/* Webhook Monitor */}
       <WebhookMonitor />
