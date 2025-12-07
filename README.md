@@ -61,3 +61,20 @@ Copy `.env.example` to `.env` (local) and set the values in Vercel → Project S
 5. Configure external callbacks (Clerk webhooks, Instagram webhook/redirect URLs, Stripe webhooks) to point at your Vercel domain.
 
 If you change environment variables, redeploy to apply them.
+
+## AI providers
+
+- OpenAI: set `OPEN_AI_KEY`.
+- Gemini: set `GEMINI_AI_KEY`.
+- OpenRouter: set `OPENROUTER_API_KEY`; client helper lives at `src/lib/openrouter.ts` with `baseURL` `https://openrouter.ai/api/v1`.
+  - Example usage:
+    ```ts
+    import { getOpenRouterClient } from "@/lib/openrouter";
+
+    const client = getOpenRouterClient();
+    const res = await client.chat.completions.create({
+      model: "meta-llama/llama-3.1-8b-instruct",
+      messages: [{ role: "user", content: "Hello!" }],
+    });
+    console.log(res.choices[0]?.message?.content);
+    ```
