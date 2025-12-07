@@ -1,4 +1,62 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Instagram Automation Platform - Slide
+
+A comprehensive Next.js application for automating Instagram DMs, comments, and engagement with AI-powered responses.
+
+## 🚀 Features Showcase
+
+### **Core Automation**
+
+- ✅ **Smart DM Automation** - AI-powered instant responses to Instagram DMs
+- ✅ **Comment Automation** - Auto-reply to comments with context-aware messages
+- ✅ **Keyword Triggers** - Custom automation based on specific keywords
+- ✅ **Automation Builder** - Visual interface to create custom workflows
+
+### **Analytics & Insights**
+
+- 📊 **Advanced Analytics Charts** - 7-day engagement trends with detailed metrics
+- 👥 **Audience Insights** - Demographics, interests, and segmentation
+- 📈 **Metrics Dashboard** - Real-time tracking of DMs, comments, and conversions
+- 🎯 **Competitor Analysis** - Track competitors and benchmark performance
+
+### **Content Management**
+
+- 📅 **Content Planner** - Schedule posts and manage publishing calendar
+- #️⃣ **Hashtag Research** - Discover trending hashtags and analyze performance
+- 👑 **Influencer Outreach** - Manage influencer partnerships and campaigns
+
+### **AI & Intelligence**
+
+- 🤖 **Smart AI Demo** - GPT-4 powered response generation
+- 💬 **Conversation Management** - Track and manage DM conversations
+- 🔔 **Notification Center** - Real-time alerts for automation events
+
+### **System Tools**
+
+- 🔗 **Webhook Monitor** - Track Instagram webhook events
+- ⚡ **System Health** - Monitor uptime and performance metrics
+- 💳 **Pricing Showcase** - Subscription plans and billing
+
+## 🎨 Live Demo
+
+Visit `/dashboard` to see all features in action with realistic demo data. No authentication required for the demo!
+
+**Key Pages:**
+
+- `/` - Homepage with features overview
+- `/features` - Detailed feature showcase
+- `/dashboard` - Full interactive dashboard with all components
+- `/setup` - Meta App setup guide
+
+## 🛠️ Tech Stack
+
+- **Framework:** Next.js 14.2.7 (App Router)
+- **Package Manager:** Bun
+- **UI:** Radix UI, Tailwind CSS, shadcn/ui
+- **State Management:** Redux Toolkit, TanStack React Query
+- **Database:** Prisma + PostgreSQL
+- **Authentication:** Manual (Clerk removed for demo)
+- **AI:** OpenAI, Gemini, OpenRouter
+- **Payments:** Stripe (lazy-loaded)
 
 ## Getting Started
 
