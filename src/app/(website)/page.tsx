@@ -97,16 +97,18 @@ export default function Home() {
                   size="lg"
                   variant="outline"
                   className="bg-blue-600 text-white hover:bg-blue-700"
+                  asChild
                 >
-                  Get Started
+                  <Link href="/dashboard">View Live Demo</Link>
                 </Button>
 
                 <Button
                   size="lg"
                   variant="outline"
                   className="border-blue-400 hover:bg-blue-900/50"
+                  asChild
                 >
-                  Learn More
+                  <Link href="/setup">Setup Guide</Link>
                 </Button>
               </div>
             </div>
@@ -119,6 +121,104 @@ export default function Home() {
                 className="object-cover"
               />
             </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Features Section */}
+      <section
+        id="features"
+        className="container w-full py-12 md:py-24 lg:py-32"
+      >
+        <div className="container px-4 md:px-6">
+          <div className="text-center space-y-4 mb-12">
+            <h2 className="text-3xl font-bold tracking-tighter sm:text-5xl">
+              Powerful Features
+            </h2>
+            <p className="max-w-[900px] mx-auto text-muted-foreground">
+              Everything you need to automate and scale your Instagram
+              engagement
+            </p>
+          </div>
+
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <Card>
+              <CardHeader>
+                <div className="text-4xl mb-2">🤖</div>
+                <CardTitle>Smart AI Automation</CardTitle>
+              </CardHeader>
+              <CardContent>
+                <p className="text-sm text-muted-foreground">
+                  AI-powered DM responses that understand context and drive
+                  high-ticket sales conversions
+                </p>
+              </CardContent>
+            </Card>
+
+            <Card>
+              <CardHeader>
+                <div className="text-4xl mb-2">💬</div>
+                <CardTitle>Comment Automation</CardTitle>
+              </CardHeader>
+              <CardContent>
+                <p className="text-sm text-muted-foreground">
+                  Automatically reply to comments with keyword triggers to boost
+                  engagement
+                </p>
+              </CardContent>
+            </Card>
+
+            <Card>
+              <CardHeader>
+                <div className="text-4xl mb-2">📤</div>
+                <CardTitle>DM Outreach</CardTitle>
+              </CardHeader>
+              <CardContent>
+                <p className="text-sm text-muted-foreground">
+                  Automated direct message campaigns triggered by keywords and
+                  user actions
+                </p>
+              </CardContent>
+            </Card>
+
+            <Card>
+              <CardHeader>
+                <div className="text-4xl mb-2">📊</div>
+                <CardTitle>Analytics Dashboard</CardTitle>
+              </CardHeader>
+              <CardContent>
+                <p className="text-sm text-muted-foreground">
+                  Real-time metrics, conversion tracking, and performance
+                  insights
+                </p>
+              </CardContent>
+            </Card>
+
+            <Card>
+              <CardHeader>
+                <div className="text-4xl mb-2">⚡</div>
+                <CardTitle>Meta Webhooks</CardTitle>
+              </CardHeader>
+              <CardContent>
+                <p className="text-sm text-muted-foreground">
+                  Real-time Instagram event processing with Meta webhook
+                  integration
+                </p>
+              </CardContent>
+            </Card>
+
+            <Card>
+              <CardHeader>
+                <div className="text-4xl mb-2">🔗</div>
+                <CardTitle>OAuth Integration</CardTitle>
+              </CardHeader>
+              <CardContent>
+                <p className="text-sm text-muted-foreground">
+                  Secure Instagram API connection with seamless OAuth
+                  authentication
+                </p>
+              </CardContent>
+            </Card>
           </div>
         </div>
       </section>
