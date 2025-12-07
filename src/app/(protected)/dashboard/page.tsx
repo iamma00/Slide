@@ -1,25 +1,22 @@
 // scenario 1 -> repeated user
-// redirect to respective dashboard 
+// redirect to respective dashboard
 // redirect -> /dashboard/varunvarshney
 
 // scenario 2 -> new user
 // redirect -> sign in
 
-import { onBoardUser, onCurrentUser } from '@/actions/user';
-import { redirect } from 'next/navigation';
-import React from 'react'
+import React from "react";
 
-type Props = {}
+export const dynamic = "force-dynamic";
 
-const Page = async (props: Props) => {
-  console.log('dash k andar-->')
-  const user = await onBoardUser();
-  console.log('dasmh-->',user.data?.firstname, user.data?.lastname)
-  if (user.status === 200 || user.status === 201) {
-    return redirect(`dashboard/${user.data?.firstname}${user.data?.lastname}`)
-  }
+const Page = async () => {
+  // TODO: Replace with manual user check (no Clerk)
+  return (
+    <div className="flex flex-col justify-center items-center h-screen w-full">
+      <h1 className="text-5xl font-bold">Dashboard</h1>
+      <p className="text-xl mt-4">Coming soon - manual auth integration</p>
+    </div>
+  );
+};
 
-  return redirect('/sign-in')
-}
-
-export default Page
+export default Page;

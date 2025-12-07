@@ -1,24 +1,12 @@
-import { onIntegrate } from '@/actions/integrations'
-import { redirect } from 'next/navigation'
-import React from 'react'
+import React from "react";
 
-type Props = {
-    searchParams: {
-        code: string
-    }
+export const dynamic = "force-dynamic";
+
+export default function InstagramCallbackPage() {
+  return (
+    <div className="flex flex-col justify-center items-center h-screen w-full">
+      <h1 className="text-5xl font-bold">Instagram Callback</h1>
+      <p className="text-xl mt-4">Processing Instagram integration...</p>
+    </div>
+  );
 }
-
-const Page = async ({ searchParams: { code } }: Props) => {
-    if (code) {
-        console.log('code-->', code)
-        const user = await onIntegrate(code.split('#_')[0]);
-        if (user.status === 200) {
-            return redirect(
-                `/dashboard/${user.data?.firstname}${user.data?.lastname}/integrations`
-            )
-        }
-    }
-    return redirect('/sign-up')
-}
-
-export default Page

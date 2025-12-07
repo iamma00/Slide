@@ -1,40 +1,22 @@
-import { onSubscribe } from '@/actions/user'
-import { redirect } from 'next/navigation'
-import React from 'react'
+import React from "react";
 
-type Props = {
-    searchParams: {
-        session_id?: string
-        cancel?: string
-    }
+export const dynamic = "force-dynamic";
+
+export default function PaymentPage() {
+  return (
+    <div className="flex flex-col justify-center items-center h-screen w-full bg-gradient-to-br from-slate-900 to-slate-800 px-4">
+      <div className="max-w-md w-full bg-white rounded-lg shadow-xl p-8">
+        <h1 className="text-3xl font-bold text-gray-900 mb-2">Payment</h1>
+        <p className="text-gray-600 mb-6">Manual payment form coming soon</p>
+
+        {/* Placeholder for manual payment cards/forms */}
+        <div className="border-2 border-dashed border-gray-300 rounded-lg p-8 text-center">
+          <p className="text-gray-500 text-sm">
+            Payment integration placeholder - will accept manual card details or
+            other payment methods
+          </p>
+        </div>
+      </div>
+    </div>
+  );
 }
-
-const Page = async ({ searchParams: { cancel, session_id } }: Props) => {
-
-    if (session_id) {
-        const customer = await onSubscribe(session_id);
-
-        if (customer.status === 200) {
-            return redirect('/dashboard')
-        }
-
-        return (
-            <div className='flex flex-col justify-center items-center h-screen w-full'>
-                <h4 className='text-5xl font-bold'>404</h4>
-                <p className='text-xl font-bold'>Oops! Something went wrong.</p>
-            </div>
-        )
-    }
-
-    if (cancel) {
-        return (
-            <div className='flex flex-col justify-center items-center h-screen w-full'>
-                <h4 className='text-5xl font-bold'>404</h4>
-                <p className='text-xl font-bold'>Oops! Something went wrong.</p>
-            </div>
-        )
-    }
-}
-
-export default Page
-

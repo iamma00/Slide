@@ -1,50 +1,21 @@
-import React from 'react';
+import React from "react";
+import { User } from "lucide-react";
+import { Button } from "@/components/ui/button";
+import Link from "next/link";
 
-import {
-    ClerkLoading,
-    SignedIn,
-    SignedOut,
-    SignInButton,
-    UserButton
-} from '@clerk/nextjs'
+type Props = {};
 
-import { User } from 'lucide-react';
-import Loader from '../loader';
-import { Button } from '@/components/ui/button';
+const AuthState = (props: Props) => {
+  return (
+    <>
+      <Link href="/dashboard">
+        <Button className="rounded-xl bg-[#252525] text-white hover:bg-[#252525]/70">
+          <User />
+          Dashboard
+        </Button>
+      </Link>
+    </>
+  );
+};
 
-type Props = {}
-
-const ClerkAuthState = (props: Props) => {
-    return (
-        <>
-            <ClerkLoading>
-                <Loader state>
-                    <></>
-                </Loader>
-            </ClerkLoading>
-
-            {/* @ts-ignore */}
-            <SignedOut>
-                <SignInButton>
-                    <Button className='rounded-xl bg-[#252525] text-white hover:bg-[#252525]/70'>
-                        <User />
-                        Login
-                    </Button>
-                </SignInButton>
-            </SignedOut>
-
-            {/* @ts-ignore */}
-            <SignedIn>
-                <UserButton>
-                    <UserButton.UserProfileLink
-                        label='Dashboard'
-                        url={`/dashboard`}
-                        labelIcon={<User size={16} />}
-                    />
-                </UserButton>
-            </SignedIn>
-        </>
-    )
-}
-
-export default ClerkAuthState
+export default AuthState;

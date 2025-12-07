@@ -6,13 +6,7 @@ let stripeInstance: Stripe | null = null;
 export const getStripe = (): Stripe => {
   if (stripeInstance) return stripeInstance;
 
-  const apiKey = process.env.STRIPE_CLIENT_SECRET;
-  if (!apiKey) {
-    throw new Error(
-      "STRIPE_CLIENT_SECRET is not set. Add it to your env (Vercel → Environment Variables)."
-    );
-  }
-
-  stripeInstance = new Stripe(apiKey, { apiVersion: "2024-06-20" });
+  const apiKey = process.env.STRIPE_CLIENT_SECRET || "sk_test_placeholder";
+  stripeInstance = new Stripe(apiKey, { apiVersion: "2024-12-18.acacia" });
   return stripeInstance;
 };

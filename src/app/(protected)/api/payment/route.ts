@@ -1,31 +1,38 @@
-import { getStripe } from "@/lib/stripe";
-import { getBaseUrl } from "@/lib/base-url";
 import { NextResponse } from "next/server";
 
-export async function GET() {
-  const priceId = process.env.STRIPE_SUBSCRIPTION_PRICE_ID;
-  const baseUrl = getBaseUrl();
+export const dynamic = "force-dynamic";
 
-  const stripe = getStripe();
+/**
+ * POST /api/payment - Manual payment processing
+ * TODO: Implement manual payment processing instead of Stripe
+ */
+export async function POST(req: Request) {
+  try {
+    const body = await req.json();
+    const { amount, currency = "usd", cardToken } = body;
 
-  const session = await stripe.checkout.sessions.create({
-    mode: "subscription",
-    line_items: [
+    if (!amount || !cardToken) {
+      return NextResponse.json(
+        { error: "Missing amount or cardToken" },
+        { status: 400 }
+      );
+    }
+
+    // TODO: Process payment manually (e.g., via payment gateway API)
+    // For now, just acknowledge receipt
+    return NextResponse.json(
       {
-        price: priceId,
-        quantity: 1,
+        status: 200,
+        message: "Payment processing placeholder",
+        amount,
+        currency,
       },
-    ],
-    success_url: `${baseUrl}/payment?session_id={CHECKOUT_SESSION_ID}`,
-    cancel_url: `${baseUrl}/payment?cancel=true`,
-  });
-
-  if (session) {
-    return NextResponse.json({
-      status: 200,
-      session_url: session.url,
-    });
+      { status: 200 }
+    );
+  } catch (error) {
+    return NextResponse.json(
+      { error: "Payment processing failed" },
+      { status: 500 }
+    );
   }
-
-  return NextResponse.json({ status: 400 });
 }

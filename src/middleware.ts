@@ -1,13 +1,2 @@
-import { clerkMiddleware } from "@clerk/nextjs/server";
-
-// Auth/authorization temporarily open for exploration; no protected routes enforced.
-export default clerkMiddleware();
-
-export const config = {
-  matcher: [
-    // Skip Next.js internals and all static files, unless found in search params
-    "/((?!_next|[^?]*\\.(?:html?|css|js(?!on)|jpe?g|webp|png|gif|svg|ttf|woff2?|ico|csv|docx?|xlsx?|zip|webmanifest)).*)",
-    // Always run for API routes
-    "/(api|trpc)(.*)",
-  ],
-};
+// Middleware currently disabled - no auth checks enforced
+// All routes are open for exploration and testing
