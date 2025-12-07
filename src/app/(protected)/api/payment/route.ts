@@ -1,32 +1,34 @@
 import { stripe } from "@/lib/stripe";
+import { getBaseUrl } from "@/lib/base-url";
 import { currentUser } from "@clerk/nextjs/server";
 import { NextResponse } from "next/server";
 
 export async function GET() {
-    const user = await currentUser();
+  const user = await currentUser();
 
-    if (!user) return NextResponse.json({ status: 400 })
+  if (!user) return NextResponse.json({ status: 400 });
 
-    const priceId = process.env.STRIPE_SUBSCRIPTION_PRICE_ID
+  const priceId = process.env.STRIPE_SUBSCRIPTION_PRICE_ID;
+  const baseUrl = getBaseUrl();
 
-    const session = await stripe.checkout.sessions.create({
-        mode: 'subscription',
-        line_items: [
-            {
-                price: priceId,
-                quantity: 1
-            },
-        ],
-        success_url: `${process.env.NEXT_PUBLIC_HOST_URL}/payment?session_id={CHECKOUT_SESSION_ID}`,
-        cancel_url: `${process.env.NEXT_PUBLIC_HOST_URL}/payment?cancel=true`
-    })
+  const session = await stripe.checkout.sessions.create({
+    mode: "subscription",
+    line_items: [
+      {
+        price: priceId,
+        quantity: 1,
+      },
+    ],
+    success_url: `${baseUrl}/payment?session_id={CHECKOUT_SESSION_ID}`,
+    cancel_url: `${baseUrl}/payment?cancel=true`,
+  });
 
-    if (session) {
-        return NextResponse.json({
-            status: 200,
-            session_url: session.url
-        })
-    }
+  if (session) {
+    return NextResponse.json({
+      status: 200,
+      session_url: session.url,
+    });
+  }
 
-    return NextResponse.json({ status: 400 })
+  return NextResponse.json({ status: 400 });
 }

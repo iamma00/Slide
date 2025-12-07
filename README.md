@@ -29,8 +29,35 @@ To learn more about Next.js, take a look at the following resources:
 
 You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
 
+## Environment variables
+
+Copy `.env.example` to `.env` (local) and set the values in Vercel → Project Settings → Environment Variables:
+
+| Variable                                                                                                                                       | Purpose                                                                           |
+| ---------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------- |
+| `NEXT_PUBLIC_HOST_URL`                                                                                                                         | Public origin for callbacks; auto-falls back to `https://${VERCEL_URL}` if unset. |
+| `NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY`, `CLERK_SECRET_KEY`, `CLERK_WEBHOOK_SECRET`                                                                | Clerk authentication and webhooks.                                                |
+| `NEXT_PUBLIC_CLERK_SIGN_IN_URL`, `NEXT_PUBLIC_CLERK_SIGN_UP_URL`, `NEXT_PUBLIC_CLERK_AFTER_SIGN_IN_URL`, `NEXT_PUBLIC_CLERK_AFTER_SIGN_UP_URL` | Optional Clerk routes for redirects.                                              |
+| `DATABASE_URL`                                                                                                                                 | Postgres connection string.                                                       |
+| `STRIPE_CLIENT_SECRET`, `STRIPE_SUBSCRIPTION_PRICE_ID`                                                                                         | Stripe billing.                                                                   |
+| `INSTAGRAM_BASE_URL`, `INSTAGRAM_TOKEN_URL`, `INSTAGRAM_CLIENT_ID`, `INSTAGRAM_CLIENT_SECRET`, `INSTAGRAM_EMBEDDED_OAUTH_URL`                  | Instagram Graph API + OAuth.                                                      |
+| `OPEN_AI_KEY`, `GEMINI_AI_KEY`, `OPENROUTER_API_KEY`                                                                                           | AI provider keys (OpenAI, Gemini, OpenRouter).                                    |
+
+## Database & Prisma
+
+- Create a Postgres database (Vercel Postgres, Supabase, RDS, etc.).
+- Enable the `pgcrypto` extension once so `gen_random_uuid()` works:
+  ```sql
+  CREATE EXTENSION IF NOT EXISTS pgcrypto;
+  ```
+- Run migrations before the first deploy: `bun run migrate:deploy` (uses `prisma migrate deploy`).
+
 ## Deploy on Vercel
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+1. Push the repo to GitHub and import it into Vercel. Vercel reads `vercel.json` and uses Bun because `bun.lockb` is present.
+2. Add the environment variables listed above. Custom domains should set `NEXT_PUBLIC_HOST_URL`; otherwise the app will fall back to `VERCEL_URL` at runtime for redirects.
+3. Ensure migrations have been applied to the target database (`bun run migrate:deploy`).
+4. Deploy. Build uses `bun run build`; `postinstall` runs `prisma generate`.
+5. Configure external callbacks (Clerk webhooks, Instagram webhook/redirect URLs, Stripe webhooks) to point at your Vercel domain.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+If you change environment variables, redeploy to apply them.
