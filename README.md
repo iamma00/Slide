@@ -67,7 +67,9 @@ If you change environment variables, redeploy to apply them.
 - OpenAI: set `OPEN_AI_KEY`.
 - Gemini: set `GEMINI_AI_KEY`.
 - OpenRouter: set `OPENROUTER_API_KEY`; client helper lives at `src/lib/openrouter.ts` with `baseURL` `https://openrouter.ai/api/v1`.
+
   - Example usage:
+
     ```ts
     import { getOpenRouterClient } from "@/lib/openrouter";
 

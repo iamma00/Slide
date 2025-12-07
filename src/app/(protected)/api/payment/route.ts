@@ -1,15 +1,12 @@
-import { stripe } from "@/lib/stripe";
+import { getStripe } from "@/lib/stripe";
 import { getBaseUrl } from "@/lib/base-url";
-import { currentUser } from "@clerk/nextjs/server";
 import { NextResponse } from "next/server";
 
 export async function GET() {
-  const user = await currentUser();
-
-  if (!user) return NextResponse.json({ status: 400 });
-
   const priceId = process.env.STRIPE_SUBSCRIPTION_PRICE_ID;
   const baseUrl = getBaseUrl();
+
+  const stripe = getStripe();
 
   const session = await stripe.checkout.sessions.create({
     mode: "subscription",
