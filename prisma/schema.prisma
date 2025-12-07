@@ -17,8 +17,8 @@ model User {
   id           String         @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
   clerkId      String         @unique
   email        String         @unique
-  firstname    String?        
-  lastname     String?        
+  firstname    String?
+  lastname     String?
   createdAt    DateTime       @default(now())
   subscription Subscription?
   integrations Integrations[]
@@ -38,6 +38,71 @@ model Subscription {
 enum SUBSCRIPTION_PLAN {
   PRO
   FREE
+  ENTERPRISE
+}
+
+model PricingPlan {
+  id            String   @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  name          String   @unique
+  displayName   String
+  description   String?
+  price         Float
+  interval      String   @default("month") // month, year
+  features      String[] // Array of feature strings
+  isPopular     Boolean  @default(false)
+  isActive      Boolean  @default(true)
+  sortOrder     Int      @default(0)
+  stripePriceId String?  @unique
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+}
+
+model Newsletter {
+  id           String   @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  email        String   @unique
+  subscribedAt DateTime @default(now())
+  isActive     Boolean  @default(true)
+}
+
+model ContactForm {
+  id        String        @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  name      String
+  email     String
+  subject   String?
+  message   String
+  status    ContactStatus @default(PENDING)
+  createdAt DateTime      @default(now())
+  repliedAt DateTime?
+}
+
+enum ContactStatus {
+  PENDING
+  READ
+  REPLIED
+  ARCHIVED
+}
+
+model Testimonial {
+  id        String   @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  name      String
+  role      String
+  company   String?
+  content   String
+  avatar    String?
+  rating    Int      @default(5)
+  isActive  Boolean  @default(true)
+  sortOrder Int      @default(0)
+  createdAt DateTime @default(now())
+}
+
+model FAQ {
+  id        String   @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  question  String
+  answer    String
+  category  String?
+  sortOrder Int      @default(0)
+  isActive  Boolean  @default(true)
+  createdAt DateTime @default(now())
 }
 
 model Integrations {
