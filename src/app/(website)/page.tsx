@@ -271,6 +271,7 @@ export default function Home() {
           </div>
         </div>
       </section>
+      <footer>Made by Mahmood Ansari</footer>
     </main>
   );
 }
