@@ -1,5 +1,29 @@
 # Quick Start Guide 🚀
 
+## ⚡ NEW: Backend-Powered Landing Page!
+
+Your landing page now has a complete backend with:
+
+- 💰 **Dynamic Pricing** from database (monthly/yearly toggle)
+- 📧 **Newsletter Subscriptions** with validation
+- 📬 **Contact Form** with status tracking
+- 💬 **Testimonials** system with ratings
+- ❓ **FAQ** management with categories
+- 📊 **Stats & Benefits** sections
+
+**Setup in 3 commands:**
+
+```bash
+bun install
+bun run db:push     # Setup database
+bun run db:seed     # Add initial data
+bun run dev         # Start server
+```
+
+See [UPDATE_SUMMARY.md](./UPDATE_SUMMARY.md) for complete details!
+
+---
+
 ## Instant Demo Access
 
 No setup required! Just run the dev server and explore:
